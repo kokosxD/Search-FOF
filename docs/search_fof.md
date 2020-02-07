@@ -1,6 +1,7 @@
 # Search for files and folders
 ```C++
 #include <iostream>
+#include <filesystem>
 #include <vector>
 #include "search.h"
 #include "utils.h"

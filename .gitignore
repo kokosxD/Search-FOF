@@ -1,0 +1,20 @@
+# Visual Studio files
+.vs
+x64
+Debug
+Release
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Test files
+files
+notes
+
+# In progress files
+src/main.cpp
+src/raw.cpp
+include/raw.h
+src/timer.cpp
+include/timer.h

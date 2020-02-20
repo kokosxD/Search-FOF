@@ -8,8 +8,8 @@ namespace kokos{
 
 		void UpdateLowercase(std::string& str);
 
-		std::string Uppercase(const std::string& str);
+		std::string Uppercase(std::string str);
 
-		std::string Lowercase(const std::string& str);
+		std::string Lowercase(std::string str);
 	}
 }

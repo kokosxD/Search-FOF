@@ -19,21 +19,19 @@ namespace kokos{
 		}
 
 		// Return a new string
-		std::string Uppercase(const std::string& str){
-			std::string new_str;
+		std::string Uppercase(std::string str){
 			for(int i = 0; i < str.length(); i ++){
-				new_str += toupper(str[i]);
+				str[i] = toupper(str[i]);
 			}
-			return new_str;
+			return str;
 		}
 
 		// Return a new string
-		std::string Lowercase(const std::string& str){
-			std::string new_str;
+		std::string Lowercase(std::string str){
 			for(int i = 0; i < str.length(); i ++){
-				new_str += tolower(str[i]);
+				str[i] = tolower(str[i]);
 			}
-			return new_str;
+			return str;
 		}
 	}
 }

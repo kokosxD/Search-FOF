@@ -7,6 +7,7 @@ Release
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+*.ilk
 
 # Test files
 files
@@ -18,3 +19,6 @@ src/raw.cpp
 include/raw.h
 src/timer.cpp
 include/timer.h
+
+# Build files
+build

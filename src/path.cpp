@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <vector>
 #include "path.h"
+#include "utils.h"
 
 namespace kokos{
 
@@ -16,14 +17,22 @@ namespace kokos{
 		}
 
 		int GetSize(const std::string& path){
+			int size = 0;
 			if(IsDir(path)){
-				return 0;
+				for(const std::string& fof : GetFOF(path)){
+					if(kokos::path::IsDir(fof)){
+						size += GetSize(fof);
+					}
+					else if(kokos::path::IsFile(fof)){
+						size += kokos::path::GetSize(fof);
+					}
+				}
+				return size;
 			}
 			else if(IsFile(path)){
 				return std::filesystem::file_size(path);
 			}
 			throw NotDirectoryOrFile("The given path is not a directory or file");
-			return 0;
 		}
 
 		std::vector<std::string> GetFOF(const std::string& dir){

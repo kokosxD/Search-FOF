@@ -1,5 +1,5 @@
 # Search for files and folders
-Search FOF is a program which searches on a given directory for files and folders based on a keyword and returns the results.
+Search FOF is a program for file/folder searching.
 ## Installation
 ```
 git clone https://github.com/kokosxD/Search-FOF

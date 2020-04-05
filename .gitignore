@@ -10,15 +10,9 @@ Release
 *.ilk
 
 # Test files
-files
-notes
-
-# In progress files
+Files
+Notes
 src/main.cpp
-src/raw.cpp
-include/raw.h
-src/timer.cpp
-include/timer.h
 
 # Build files
-build
+Build

@@ -1,17 +1,28 @@
-#include <iostream>
 #pragma once
+#include <iostream>
 
 namespace kokos{
+    void print() noexcept;
 
-    void print();
-
-    template<typename first, typename ... rest>
-    void print(first arg, const rest&... args){
-        std::cout << arg << std::endl;
+    template<typename First, typename... Rest>
+    void print(const First& arg, const Rest&... args) noexcept{
+        std::cout << arg;
         print(args...);
     }
 
-    std::string input(const std::string& message);
+    void pause() noexcept;
 
-    void pause();
+	class kokoEnviron{
+	private:
+		char* var = nullptr;
+		unsigned long long int size = 0;
+	public:
+		~kokoEnviron();
+
+		void Select(const char* var_name);
+
+		char* Get() const;
+	};
+
+	std::string Input();
 }

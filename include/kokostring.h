@@ -1,15 +1,18 @@
-#include <iostream>
 #pragma once
+#include <string>
 
 namespace kokos{
+	namespace String{
+		const char ToUpper(const char& character) noexcept;
 
-	namespace string{
-		void UpdateUppercase(std::string& str);
+		const char ToLower(const char& character) noexcept;
 
-		void UpdateLowercase(std::string& str);
+		void UpdateUppercase(std::string& str) noexcept;
 
-		std::string Uppercase(std::string str);
+		void UpdateLowercase(std::string& str) noexcept;
 
-		std::string Lowercase(std::string str);
+		std::string& Uppercase(std::string str) noexcept;
+
+		std::string& Lowercase(std::string str) noexcept;
 	}
 }

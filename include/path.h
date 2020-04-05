@@ -1,36 +1,29 @@
-#include <iostream>
 #pragma once
-
-class NotDirectoryOrFile : std::exception{
-
-private:
-	const char* error;
-
-public:
-
-	NotDirectoryOrFile(const std::string& message){
-		error = message.c_str();
-	}
-
-	const char* what() const throw(){
-		return error;
-	}
-};
+#include <filesystem>
+#include <string>
+#include <vector>
 
 namespace kokos{
+	namespace Path{
+		std::string Join();
 
-	namespace path{
+		template<typename First, typename... Rest>
+		std::string Join(const First& path, const Rest&... paths){
+			return (std::filesystem::path(path) / std::filesystem::path(Join(paths...))).string();
+		}
 
-		bool IsDir(const std::string& path);
+		const bool IsDir(const std::string& path) noexcept;
 
-		bool IsFile(const std::string& path);
+		const bool IsFile(const std::string& path) noexcept;
 
-		int GetSize(const std::string& path);
+		const unsigned int GetSize(const std::string& path);
 
-		std::vector<std::string> GetFOF(const std::string& dir);
+		std::vector<std::string> GetFOF(const std::string& dir) noexcept;
 
-		std::string Join(const std::string& path_1, const std::string& path_2);
+		std::string& DirBack(std::string dir, const unsigned int& times);
 
-		std::string DirBack(const std::string& dir, int& times);
+		void UpdateEscape(std::string& path);
+
+		std::string Escape(const std::string& path);
 	}
 }

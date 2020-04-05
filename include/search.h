@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
 #pragma once
+#include <string>
+#include <vector>
 
 namespace kokos{
-	std::vector<std::string> Search(const std::string& dir, std::string& keyword);
+	std::vector<std::string> Search(const std::string& dir, const std::string& keyword);
 }

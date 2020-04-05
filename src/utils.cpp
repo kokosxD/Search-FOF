@@ -1,18 +1,28 @@
-#include <iostream>
+#include <string>
+#include "utils.h"
 
-namespace kokos{
+void kokos::print() noexcept{
+    std::cout << std::flush;
+}
 
-    void print(){}
+void kokos::pause() noexcept{
+    std::system("pause");
+}
 
-    std::string input(const std::string& message){
-        std::string input;
-        std::cout << message;
-        std::cin >> input;
-        std::cout << std::endl;
-        return input;
-    }
+kokos::kokoEnviron::~kokoEnviron(){
+	delete var;
+}
 
-    void pause(){
-        std::system("pause");
-    }
+void kokos::kokoEnviron::Select(const char* var_name){
+	_dupenv_s(&var, &size, var_name);
+}
+
+char* kokos::kokoEnviron::Get() const{
+	return var;
+}
+
+std::string kokos::Input(){
+	std::string input = std::string("");
+	std::getline(std::cin, input);
+	return input;
 }

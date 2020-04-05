@@ -1,43 +1,32 @@
-#include <iostream>
 #include <filesystem>
-#include <vector>
-#include <locale>
-#include "path.h"
-#include "utils.h"
-#include "kokostring.h"
 #include "search.h"
+#include "path.h"
+#include "kokostring.h"
 
-File::File(const std::string& _dir){
-	dir = _dir;
-	size = kokos::path::GetSize(dir);
-}
-
-namespace kokos{
-	std::vector<std::string> Search(const std::string& dir, std::string& keyword){
-		std::vector<std::string> results;
-		for(std::string result : kokos::path::GetFOF(dir)){
-			try{
-				if(kokos::path::IsDir(result)){
-					if(kokos::string::Lowercase(std::filesystem::path(result).filename().string()).find(kokos::string::Lowercase(keyword)) != std::string::npos){
-						results.push_back(std::filesystem::path(result).filename().string());
-
-						// Add the full path
-						// results.push_back(result);
-					}
-					std::vector<std::string> r = Search(kokos::path::Join(dir, result), keyword);
-					results.insert(results.end(), r.begin(), r.end());
+std::vector<std::string> kokos::Search(const std::string& dir, const std::string& keyword){
+	std::vector<std::string> results = std::vector<std::string>();
+	std::vector<std::string> r = std::vector<std::string>();
+	for(const std::string& result : Path::GetFOF(dir)){
+		try{
+			if(Path::IsDir(result)){
+				if(String::Lowercase(std::filesystem::path(result).filename().string()).find(kokos::String::Lowercase(keyword)) != std::string::npos){
+					results.push_back(result);
 				}
-				else if(kokos::path::IsFile(result)){
-					if(kokos::string::Lowercase(std::filesystem::path(result).filename().string()).find(kokos::string::Lowercase(keyword)) != std::string::npos){
-						results.push_back(std::filesystem::path(result).filename().string());
 
-						// Add the full path
-						// results.push_back(result);
-					}
+				r = Search(Path::Join(dir, result), keyword);
+				results.insert(results.end(), r.begin(), r.end());
+			}
+
+			// Some special Windows files are not treated like folders or files
+			else if(Path::IsFile(result)){
+				if(String::Lowercase(std::filesystem::path(result).filename().string()).find(kokos::String::Lowercase(keyword)) != std::string::npos){
+					results.push_back(result);
 				}
 			}
-			catch(std::filesystem::filesystem_error){}
 		}
-		return results;
+
+		// Ignore errors and continue
+		catch(std::filesystem::filesystem_error){}
 	}
+	return results;
 }

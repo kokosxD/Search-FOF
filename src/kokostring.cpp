@@ -16,34 +16,30 @@ const char kokos::String::ToLower(const char& character) noexcept{
 
 	// If its uppercase
 	if(aschii_code > 65 && aschii_code < 90){
-		return static_cast<char>(aschii_code - 32);
+		return static_cast<char>(aschii_code + 32);
 	}
 
 	return character;
 }
 
 void kokos::String::UpdateUppercase(std::string& str) noexcept{
-	for(char& character : str){
-		character = ToUpper(character);
+	for(unsigned int i = 0; i < str.size(); i++){
+		str[i] = ToUpper(str[i]);
 	}
 }
 
 void kokos::String::UpdateLowercase(std::string& str) noexcept{
-	for(char& character : str){
-		character = ToLower(character);
+	for(unsigned int i = 0; i < str.size(); i++){
+		str[i] = ToLower(str[i]);
 	}
 }
 
-std::string& kokos::String::Uppercase(std::string str) noexcept{
-	for(char& character : str){
-		character = ToUpper(character);
-	}
+std::string kokos::String::Uppercase(std::string str) noexcept{
+	UpdateUppercase(str);
 	return str;
 }
 
-std::string& kokos::String::Lowercase(std::string str) noexcept{
-	for(char& character : str){
-		character = ToLower(character);
-	}
+std::string kokos::String::Lowercase(std::string str) noexcept{
+	UpdateLowercase(str);
 	return str;
 }

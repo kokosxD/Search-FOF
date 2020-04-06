@@ -11,8 +11,8 @@ namespace kokos{
 
 		void UpdateLowercase(std::string& str) noexcept;
 
-		std::string& Uppercase(std::string str) noexcept;
+		std::string Uppercase(std::string str) noexcept;
 
-		std::string& Lowercase(std::string str) noexcept;
+		std::string Lowercase(std::string str) noexcept;
 	}
 }

@@ -6,6 +6,7 @@
 #include "timer.h"
 #include "utils.h"
 #include "defines.h"
+#include "kokostring.h"
 
 int main(){
 
@@ -33,7 +34,7 @@ int main(){
 	std::string show = std::string("");
 	while(true){
 		kokos::print("Show results (yes, no)?", TAB);
-		show = kokos::Input();
+		show = kokos::String::Lowercase(kokos::Input());
 		if(show == "yes" || show == "no"){ break; }
 	}
 	const bool show_results = show == "yes" ? true : false;

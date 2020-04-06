@@ -1,5 +1,6 @@
 # Search for files and folders
 ```C++
+#include <shlobj_core.h>
 #include "search.h"
 #include "path.h"
 #include "timer.h"
@@ -8,10 +9,17 @@
 
 int main(){
 
+	// Check if its running with administrator permissions
+	// (its required for accessing enviroment variables like "UserProfile")
+	if(! IsUserAnAdmin()){
+		kokos::print("Cannot get current user's directory because it needs administrator pemissions", NEW_LINE);
+		kokos::print("Run it again as administrator", NEW_LINE);
+		kokos::pause();
+		return -1;
+	}
+
 	// Get current user's directory
 	kokos::kokoEnviron user_dir = kokos::kokoEnviron();
-
-	// It needs administrator permissions
 	user_dir.Select("UserProfile");
 	std::string dir = user_dir.Get();
 
